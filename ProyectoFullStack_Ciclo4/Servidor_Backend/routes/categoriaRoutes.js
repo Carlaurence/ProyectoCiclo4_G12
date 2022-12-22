@@ -8,7 +8,6 @@ const express = require("express");// Importar Framework express para Node Js
 const router = express.Router(); //Importar Router de express para establecer las rutas (Controller)
 const TcategoriaController = require("../controllers/TcategoriaController");
 const authMidd = require("../middleware/authMidd");
-const Categoria = require("../models/Tcategoria");
 
 /****************************************POST***********************************************************/
 /*******************************************************************************************************/
@@ -21,11 +20,24 @@ router.post("/",authMidd, TcategoriaController.crearCategoria);/*****RUTA URL PE
 
 /****************************************GET CATEGORIA BY CREADOR***************************************/
 /*******************************************************************************************************/
-router.get("/",authMidd, TcategoriaController.getCategoriasByCreador);
+//router.get("/",authMidd, TcategoriaController.getCategoriasByCreador);
 
-/****************************************GET TODAS LAS CATEGORIAS***************************************/
+/****************************************GET CATEGORIA BY NOMBRE-CATEGORIA EN URL***********************/
 /*******************************************************************************************************/
-router.get("/all",authMidd, TcategoriaController.getAllCategorias);
+//router.get("/:nombre",authMidd, TcategoriaController.getCategoriasByNombre);
+
+/****************************************GET CATEGORIA BY idCategoria EN URL***************************/
+/*******************************************************************************************************/
+router.get("/:id",authMidd, TcategoriaController.getCategoriasByidCategoria);
+
+
+/*************************GET TODAS LAS CATEGORIAS CON AUTH-MIDDLEWARE**********************************/
+/*******************************************************************************************************/
+router.get("/",authMidd, TcategoriaController.getAllCategorias);
+
+/*****************************GET ALL CATEGORIAS SIN AUTH-MIDDLEWARE************************************/
+/******************ESTA RUTA ES PARA VER LAS CATEGORIAS EN EL HOME**************************************/
+router.get("/home/cliente", TcategoriaController.getCategoriasHome);
 
 
 /****************************************PUT-UPDATE*****************************************************/

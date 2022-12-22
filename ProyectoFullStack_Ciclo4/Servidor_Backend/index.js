@@ -14,12 +14,18 @@ const usuarioRoutes = require("./routes/usuarioRoutes");// Hacemos el llamado de
 const authRoutes = require("./routes/authRoutes");// Hacemos el llamado de auth de la misma carpeta routes
 const categoriaRoutes  = require("./routes/categoriaRoutes")//Importamos la Lib categoriaRoutes en la const: categoriaRoutes 
 const productoRoutes = require("./routes/productoRoutes")//Importamos la Lib productoRoutes en la const: productoRoutes
+//Para conectar el front y el back se debe cumplir con una politica de CORS
+//tenemos que habilitar los CORS
+//importamos la libreria/dependencia de los CORS npm i cors
+const cors = require("cors");
 
 const app = express();
 app.use(express.json({extended: true}));
 
 //Aqui hacemos el llamado require de la conexion db.js
 connectDB();
+//habilitamos los cors justo AQUI
+app.use(cors());
 
 //Construccion de Rutas / Url's
 //NOTA: Una url puede contener varios verbos - peticiones Get. Post, Put, Delete

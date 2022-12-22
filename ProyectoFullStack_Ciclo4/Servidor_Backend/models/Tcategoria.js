@@ -9,6 +9,7 @@ const mongoose = require("mongoose");/******IMPORTANDO EL ORM: OBJECT RELATIONAL
 /********************SETTEANDO LAS PROPIEDADES DE CADA CAMPO DE LA TABLA************************/
 const CategoriaSchema = mongoose.Schema({
     nombre: {type: String, required: true, trim: true},
+    imagen: {type: String, required: true, trim: true},
     creador: {type: mongoose.Schema.Types.ObjectId, ref: "Usuario" },
     creado: {type: Date, default: Date.now()}
 });/********************************************************************************************/
